@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>ShopZone - Online Shopping in Chennai | Electronics, Fashion, Home, Books</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body class="page-home">
+  <div class="top-promo"><i class="fas fa-bolt"></i> MEGA SALE: Up to 80% OFF + Extra ₹500 Coupon on Orders ₹2000+ |
+    Code: SHOP500</div>
+  <header class="header">
+    <a href="index.html" class="logo"><span class="logo-text">Shop<span>Zone</span></span><span
+        class="logo-sfx"></span></a>
+    <div class="deliver-to"><i class="fas fa-map-marker-alt"></i>
+      <div><span class="dt-sm">Deliver to</span><span class="dt-loc">Chennai 600001</span></div>
+    </div>
+    <div class="search-bar"><select class="search-select">
+        <option>All</option>
+        <option>Electronics</option>
+        <option>Fashion</option>
+        <option>Home & Kitchen</option>
+        <option>Books</option>
+      </select><input class="search-input" type="text" placeholder="Search ShopZone.in" aria-label="Search"><button
+        class="search-btn"><i class="fas fa-search"></i></button></div>
+    <div class="header-right">
+      <a href="#" class="hdr-link acct-link"><span class="hl-sm">Hello, Sign in</span><span class="hl-bg">Account &
+          Lists <i class="fas fa-caret-down" style="font-size:10px"></i></span></a>
+      <a href="#" class="hdr-link orders-link"><span class="hl-sm">Returns</span><span class="hl-bg">Orders</span></a>
+      <a href="cart.html" class="cart-link"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span><span
+          class="cart-txt">Cart</span></a>
+    </div>
+    <div class="acct-dd"></div>
+  </header>
+
+  <nav class="sub-nav">
+    <a href="#" class="nav-all"><i class="fas fa-bars"></i> All</a>
+    <a href="index.html" class="active">Today's Deals</a>
+    <a href="electronics.html">Electronics</a>
+    <a href="fashion.html">Fashion</a>
+    <a href="home-kitchen.html">Home & Kitchen</a>
+    <a href="books.html">Books</a>
+    <a href="#">Gift Cards</a>
+    <a href="#">Best Sellers</a>
+    <a href="#">New Releases</a>
+    <a href="#">Customer Service</a>
+  </nav>
+
+  <!-- AUTH MODAL (Amazon-style 2-step) -->
+  <div class="auth-overlay" id="authOverlay" onclick="if(event.target===this)closeAuth()">
+    <div class="auth-box">
+      <button class="auth-close" onclick="closeAuth()"><i class="fas fa-times"></i></button>
+      <div class="auth-inner">
+        <div class="auth-logo">Shop<span>Zone</span></div>
+
+        <!-- Step 1: Email -->
+        <div class="auth-step active" id="step-email">
+          <h1>Sign in</h1>
+          <form onsubmit="authContinue(event)">
+            <div class="fg"><label>Email or mobile phone number</label><input type="email" id="authEmail"
+                placeholder="Enter your email" required></div>
+            <div class="auth-err" id="emailErr"></div>
+            <button type="submit" class="auth-btn">Continue</button>
+          </form>
+          <div class="auth-divider">New to ShopZone?</div>
+          <div class="auth-create">Create your <a href="#" onclick="event.preventDefault();switchToSignup()">ShopZone
+              account</a></div>
+        </div>
+
+        <!-- Step 2: Password -->
+        <div class="auth-step" id="step-password">
+          <div class="auth-back" onclick="authBackToEmail()"><i class="fas fa-arrow-left"></i> Back</div>
+          <h1>Sign in</h1>
+          <div style="font-size:13px;color:var(--text-mid);margin-bottom:12px" id="passEmailShow"></div>
+          <form onsubmit="handleSignIn(event)">
+            <div class="fg"><label>Password</label><input type="password" id="authPass"
+                placeholder="At least 6 characters" required></div>
+            <div class="auth-err" id="passErr"></div>
+            <button type="submit" class="auth-btn">Sign in</button>
+          </form>
+          <a href="#" class="auth-forgot"
+            onclick="event.preventDefault();showToast('Password reset link sent to your email')">Forgot your
+            password?</a>
+        </div>
+
+        <!-- Step 3: Sign Up -->
+        <div class="auth-step" id="step-signup">
+          <h1>Create account</h1>
+          <form onsubmit="handleSignUp(event)">
+            <div class="fg"><label>Your name</label><input type="text" id="suName" placeholder="First and last name"
+                required></div>
+            <div class="fg"><label>Email</label><input type="email" id="suEmail" placeholder="Enter your email"
+                required></div>
+            <div class="fg"><label>Password</label><input type="password" id="suPass"
+                placeholder="At least 6 characters" required minlength="6"></div>
+            <div class="auth-err" id="suErr"></div>
+            <button type="submit" class="auth-btn">Create your ShopZone account</button>
+          </form>
+          <div class="auth-divider">Already have an account?</div>
+          <div class="auth-create"><a href="#" onclick="event.preventDefault();resetAuth();showStep('email')">Sign
+              in</a></div>
+        </div>
+
+        <div class="auth-terms">By continuing, you agree to ShopZone's <a href="#">Conditions of Use</a> and <a
+            href="#">Privacy Notice</a>.</div>
+      </div>
+    </div>
+  </div>
+
+  <main class="page-content">
+    <div class="hero-carousel">
+      <div class="carousel-track">
+        <div class="carousel-slide"><img
+            src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1400&h=500&fit=crop&q=80"
+            alt="Mega Electronics Sale">
+          <div class="carousel-overlay"></div>
+        </div>
+        <div class="carousel-slide"><img
+            src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1400&h=500&fit=crop&q=80"
+            alt="Fashion Fiesta">
+          <div class="carousel-overlay"></div>
+        </div>
+        <div class="carousel-slide"><img
+            src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&h=500&fit=crop&q=80"
+            alt="Home Makeover">
+          <div class="carousel-overlay"></div>
+        </div>
+        <div class="carousel-slide"><img
+            src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1400&h=500&fit=crop&q=80"
+            alt="Deal of the Day">
+          <div class="carousel-overlay"></div>
+        </div>
+      </div>
+      <button class="carousel-btn carousel-prev"><i class="fas fa-chevron-left"></i></button>
+      <button class="carousel-btn carousel-next"><i class="fas fa-chevron-right"></i></button>
+      <div class="carousel-dots"><span class="carousel-dot active"></span><span class="carousel-dot"></span><span
+          class="carousel-dot"></span><span class="carousel-dot"></span></div>
+    </div>
+
+    <div class="cat-grid">
+      <a href="electronics.html" class="cat-card"><img class="cat-card-img"
+          src="https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=400&h=300&fit=crop&q=80"
+          alt="Electronics">
+        <h3>Electronics</h3><span class="see-more">Shop now</span>
+      </a>
+      <a href="fashion.html" class="cat-card"><img class="cat-card-img"
+          src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=400&h=300&fit=crop&q=80" alt="Fashion">
+        <h3>Fashion</h3><span class="see-more">Shop now</span>
+      </a>
+      <a href="home-kitchen.html" class="cat-card"><img class="cat-card-img"
+          src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop&q=80"
+          alt="Home & Kitchen">
+        <h3>Home & Kitchen</h3><span class="see-more">Shop now</span>
+      </a>
+      <a href="books.html" class="cat-card"><img class="cat-card-img"
+          src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=400&h=300&fit=crop&q=80" alt="Books">
+        <h3>Books</h3><span class="see-more">Shop now</span>
+      </a>
+    </div>
+
+    <div class="offer-marquee anim-scroll">
+      <div class="offer-track">
+        <span class="offer-item"><i class="fas fa-tag"></i> 70% OFF Sarees <span class="offer-tag">LIVE</span></span>
+        <span class="offer-item"><i class="fas fa-bolt"></i> AirPods ₹14,999 <span class="offer-tag">HOT</span></span>
+        <span class="offer-item"><i class="fas fa-gift"></i> Code SHOP500 ₹500 OFF</span>
+        <span class="offer-item"><i class="fas fa-fire"></i> 80% OFF Earbuds <span
+            class="offer-tag">TRENDING</span></span>
+        <span class="offer-item"><i class="fas fa-percent"></i> Buy 2 Get 1 Free Books</span>
+        <span class="offer-item"><i class="fas fa-truck"></i> Free Delivery Chennai</span>
+        <span class="offer-item"><i class="fas fa-tag"></i> 70% OFF Sarees <span class="offer-tag">LIVE</span></span>
+        <span class="offer-item"><i class="fas fa-bolt"></i> AirPods ₹14,999 <span class="offer-tag">HOT</span></span>
+        <span class="offer-item"><i class="fas fa-gift"></i> Code SHOP500 ₹500 OFF</span>
+        <span class="offer-item"><i class="fas fa-fire"></i> 80% OFF Earbuds <span
+            class="offer-tag">TRENDING</span></span>
+        <span class="offer-item"><i class="fas fa-percent"></i> Buy 2 Get 1 Free Books</span>
+        <span class="offer-item"><i class="fas fa-truck"></i> Free Delivery Chennai</span>
+      </div>
+    </div>
+
+    <div class="deal-banner anim-scroll">
+      <div class="deal-info"><span class="deal-label"><i class="fas fa-bolt"></i> Deal of the Day</span>
+        <h2>Up to 78% OFF on Top Deals</h2>
+        <p>Limited time offers on Electronics, Fashion, Home & more</p>
+      </div>
+      <div class="deal-timer">
+        <div class="timer-box"><span class="t-num t-hours">08</span><span class="t-lbl">Hours</span></div>
+        <div class="timer-box"><span class="t-num t-mins">00</span><span class="t-lbl">Mins</span></div>
+        <div class="timer-box"><span class="t-num t-secs">00</span><span class="t-lbl">Secs</span></div>
+      </div>
+    </div>
+
+    <div class="promo-tiles anim-scroll">
+      <a href="#" class="promo-tile" style="background:linear-gradient(135deg,#667eea,#764ba2);">
+        <div class="promo-circle"></div>
+        <div class="promo-circle"></div>
+        <h3>Extra ₹500 OFF</h3>
+        <p>Code: SHOP500 on ₹2000+</p>
+      </a>
+      <a href="#" class="promo-tile" style="background:linear-gradient(135deg,#f093fb,#f5576c);">
+        <div class="promo-circle"></div>
+        <div class="promo-circle"></div>
+        <h3>No Cost EMI</h3>
+        <p>On selected credit cards</p>
+      </a>
+      <a href="#" class="promo-tile" style="background:linear-gradient(135deg,#4facfe,#00f2fe);">
+        <div class="promo-circle"></div>
+        <div class="promo-circle"></div>
+        <h3>Prime Free Delivery</h3>
+        <p>Early access + free shipping</p>
+      </a>
+    </div>
+
+    <!-- DEALS -->
+    <section class="section anim-scroll">
+      <div class="sec-hdr">
+        <h2 class="sec-title"><i class="fas fa-bolt"></i> Today's Best Deals</h2><a href="#" class="see-more">See all <i
+            class="fas fa-chevron-right"></i></a>
+      </div>
+      <div class="product-grid deal-grid"></div>
+    </section>
+
+    <!-- AD BANNER 1 -->
+    <div class="deal-banner anim-scroll" style="background:linear-gradient(135deg,#0f3460,#533483,#e94560);">
+      <div class="deal-info"><span class="deal-label" style="background:#e94560;"><i class="fas fa-fire"></i>
+          TRENDING</span>
+        <h2>Fashion Week Specials</h2>
+        <p>Up to 76% OFF on curated styles</p>
+      </div><a href="fashion.html"
+        style="background:var(--accent-yellow);color:var(--text-dark);padding:12px 28px;border-radius:var(--r-sm);font-weight:700;font-size:15px;position:relative;z-index:1;white-space:nowrap;"
+        onmouseover="this.style.background='var(--accent-dark)'"
+        onmouseout="this.style.background='var(--accent-yellow)'">Shop Fashion <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <!-- DISCOUNT STRIP -->
+    <div class="disc-strip anim-scroll">
+      <div class="disc-card"><img class="disc-card-img"
+          src="https://images.unsplash.com/photo-1556656793-08538906a9f8?w=400&h=250&fit=crop&q=80" alt="Smartphones">
+        <div class="disc-card-body"><span class="disc-off">Up to 40% OFF</span>
+          <h4>Top Smartphones</h4>
+          <p>Samsung, Apple, OnePlus</p>
+        </div>
+      </div>
+      <div class="disc-card"><img class="disc-card-img"
+          src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=250&fit=crop&q=80" alt="Laptops">
+        <div class="disc-card-body"><span class="disc-off">Up to 30% OFF</span>
+          <h4>Laptops</h4>
+          <p>MacBook, HP, Dell</p>
+        </div>
+      </div>
+      <div class="disc-card"><img class="disc-card-img"
+          src="https://images.unsplash.com/photo-1590658268037-6bf12f032f55?w=400&h=250&fit=crop&q=80" alt="Audio">
+        <div class="disc-card-body"><span class="disc-off">Up to 78% OFF</span>
+          <h4>Earbuds & Headphones</h4>
+          <p>Sony, JBL, boAt</p>
+        </div>
+      </div>
+      <div class="disc-card"><img class="disc-card-img"
+          src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=400&h=250&fit=crop&q=80"
+          alt="Ethnic Wear">
+        <div class="disc-card-body"><span class="disc-off">Up to 76% OFF</span>
+          <h4>Ethnic Wear</h4>
+          <p>Sarees, Kurtas</p>
+        </div>
+      </div>
+      <div class="disc-card"><img class="disc-card-img"
+          src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=250&fit=crop&q=80" alt="Kitchen">
+        <div class="disc-card-body"><span class="disc-off">Up to 50% OFF</span>
+          <h4>Kitchen Appliances</h4>
+          <p>Mixer, Air Fryer, Cooktop</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ELECTRONICS -->
+    <section class="section anim-scroll">
+      <div class="sec-hdr">
+        <h2 class="sec-title"><i class="fas fa-microchip"></i> Top Electronics</h2><a href="electronics.html"
+          class="see-more">See all <i class="fas fa-chevron-right"></i></a>
+      </div>
+      <div class="product-grid elec-grid"></div>
+    </section>
+
+    <!-- FASHION -->
+    <section class="section anim-scroll">
+      <div class="sec-hdr">
+        <h2 class="sec-title"><i class="fas fa-tshirt"></i> Trending Fashion</h2><a href="fashion.html"
+          class="see-more">See all <i class="fas fa-chevron-right"></i></a>
+      </div>
+      <div class="product-grid fashion-grid"></div>
+    </section>
+
+    <!-- AD BANNER 2 -->
+    <div class="deal-banner anim-scroll" style="background:linear-gradient(135deg,#1a1a2e,#e65100,#ff8f00);">
+      <div class="deal-info"><span class="deal-label"><i class="fas fa-home"></i> HOME ESSENTIALS</span>
+        <h2>Home & Kitchen Sale</h2>
+        <p>Mixer grinders, air fryers, furniture up to 50% OFF</p>
+      </div><a href="home-kitchen.html"
+        style="background:var(--accent-yellow);color:var(--text-dark);padding:12px 28px;border-radius:var(--r-sm);font-weight:700;font-size:15px;position:relative;z-index:1;white-space:nowrap;"
+        onmouseover="this.style.background='var(--accent-dark)'"
+        onmouseout="this.style.background='var(--accent-yellow)'">Shop Home <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <!-- HOME & KITCHEN -->
+    <section class="section anim-scroll">
+      <div class="sec-hdr">
+        <h2 class="sec-title"><i class="fas fa-home"></i> Home & Kitchen</h2><a href="home-kitchen.html"
+          class="see-more">See all <i class="fas fa-chevron-right"></i></a>
+      </div>
+      <div class="product-grid home-grid"></div>
+    </section>
+
+    <!-- AD BANNER 3 -->
+    <div class="deal-banner anim-scroll" style="background:linear-gradient(135deg,#2d1b69,#11998e,#38ef7d);">
+      <div class="deal-info"><span class="deal-label"><i class="fas fa-book"></i> BOOK LOVERS</span>
+        <h2>Bestselling Books from ₹149</h2>
+        <p>Self-help, fiction, finance — up to 60% OFF</p>
+      </div><a href="books.html"
+        style="background:var(--accent-yellow);color:var(--text-dark);padding:12px 28px;border-radius:var(--r-sm);font-weight:700;font-size:15px;position:relative;z-index:1;white-space:nowrap;"
+        onmouseover="this.style.background='var(--accent-dark)'"
+        onmouseout="this.style.background='var(--accent-yellow)'">Shop Books <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <!-- BOOKS -->
+    <section class="section anim-scroll">
+      <div class="sec-hdr">
+        <h2 class="sec-title"><i class="fas fa-book"></i> Books</h2><a href="books.html" class="see-more">See all <i
+            class="fas fa-chevron-right"></i></a>
+      </div>
+      <div class="product-grid books-grid"></div>
+    </section>
+
+    <!-- BEST SELLERS -->
+    <section class="section anim-scroll">
+      <div class="sec-hdr">
+        <h2 class="sec-title"><i class="fas fa-trophy"></i> Best Sellers</h2><a href="#" class="see-more">See more <i
+            class="fas fa-chevron-right"></i></a>
+      </div>
+      <div class="product-grid best-grid"></div>
+    </section>
+
+    <!-- GIFTCARD PROMO -->
+    <div class="promo-tiles anim-scroll" style="margin-bottom:24px;">
+      <a href="#" class="promo-tile" style="background:linear-gradient(135deg,#f5af19,#f12711);">
+        <div class="promo-circle"></div>
+        <div class="promo-circle"></div>
+        <h3>Gift Cards</h3>
+        <p>Perfect gift for any occasion</p>
+      </a>
+      <a href="#" class="promo-tile" style="background:linear-gradient(135deg,#00b4db,#0083b0);">
+        <div class="promo-circle"></div>
+        <div class="promo-circle"></div>
+        <h3>Amazon Pay Balance</h3>
+        <p>Instant 5% cashback on reload</p>
+      </a>
+      <a href="#" class="promo-tile" style="background:linear-gradient(135deg,#e44d26,#f16529);">
+        <div class="promo-circle"></div>
+        <div class="promo-circle"></div>
+        <h3>ShopZone Pay Later</h3>
+        <p>Buy now pay next month</p>
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-top"><a href="#">Back to top</a></div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Get to Know Us</h4><a href="#">About ShopZone</a><a href="#">Careers</a><a href="#">Press Releases</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect with Us</h4><a href="#">Facebook</a><a href="#">Twitter</a><a href="#">Instagram</a>
+      </div>
+      <div class="footer-col">
+        <h4>Make Money with Us</h4><a href="#">Sell on ShopZone</a><a href="#">Become an Affiliate</a><a
+          href="#">Advertise</a>
+      </div>
+      <div class="footer-col">
+        <h4>Let Us Help You</h4><a href="#">Your Account</a><a href="#">Returns Centre</a><a href="#">Customer
+          Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><span class="footer-logo">Shop<span>Zone</span></span>
+      <div class="footer-bottom-links"><a href="#">Conditions of Use</a><a href="#">Privacy Notice</a></div>
+    </div>
+    <div class="footer-copy">&copy; 2026 ShopZone.in. Demo clone for educational purposes.</div>
+  </footer>
+  <button class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+  <script src="index.js"></script>
+</body>
+</html>

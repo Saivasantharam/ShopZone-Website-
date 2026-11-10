@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Shopping Cart - ShopZone.in</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body class="page-cart">
+  <div class="top-promo"><i class="fas fa-truck"></i> FREE Delivery on your order! Code SAVE200 for extra ₹200 OFF on
+    ₹1000+</div>
+  <header class="header">
+    <a href="index.html" class="logo"><span class="logo-text">Shop<span>Zone</span></span><span
+        class="logo-sfx"></span></a>
+    <div class="deliver-to"><i class="fas fa-map-marker-alt"></i>
+      <div><span class="dt-sm">Deliver to</span><span class="dt-loc">Chennai 600001</span></div>
+    </div>
+    <div class="search-bar"><select class="search-select">
+        <option>All</option>
+        <option>Electronics</option>
+        <option>Fashion</option>
+        <option>Home & Kitchen</option>
+        <option>Books</option>
+      </select><input class="search-input" type="text" placeholder="Search ShopZone.in" aria-label="Search"><button
+        class="search-btn"><i class="fas fa-search"></i></button></div>
+    <div class="header-right">
+      <a href="#" class="hdr-link acct-link"><span class="hl-sm">Hello, Sign in</span><span class="hl-bg">Account <i
+            class="fas fa-caret-down" style="font-size:10px"></i></span></a>
+      <a href="#" class="hdr-link orders-link"><span class="hl-sm">Returns</span><span class="hl-bg">& Orders</span></a>
+      <a href="cart.html" class="cart-link"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span><span
+          class="cart-txt">Cart</span></a>
+    </div>
+    <div class="acct-dd"></div>
+  </header>
+  <nav class="sub-nav"><a href="#" class="nav-all"><i class="fas fa-bars"></i> All</a><a href="index.html">Today's
+      Deals</a><a href="electronics.html">Electronics</a><a href="fashion.html">Fashion</a><a
+      href="home-kitchen.html">Home & Kitchen</a><a href="books.html">Books</a><a href="deals.html">All Deals</a><a
+      href="#">Gift Cards</a><a href="#">Best Sellers</a></nav>
+
+  <main class="page-content">
+    <div class="cart-page">
+      <div class="cart-breadcrumb"><a href="index.html">ShopZone.in</a> &nbsp;<i class="fas fa-chevron-right"
+          style="font-size:10px;color:#ccc;"></i>&nbsp; Shopping Cart</div>
+
+      <div class="cart-layout">
+        <div class="cart-items"></div>
+        <div class="cart-summary">
+          <div class="cart-summary-inner" style="display:block;"></div>
+        </div>
+      </div>
+
+      <!-- YOUR WISHLIST -->
+      <div class="section" style="max-width:1200px;margin:40px auto 0;padding:0 16px;">
+        <div class="sec-hdr">
+          <h2 class="section-title"><i class="fas fa-heart" style="margin-right:8px;color:var(--deal-red)"></i> Your
+            Wishlist</h2>
+          <a href="#" class="see-more" onclick="showWishlist();return false;">View All <i
+              class="fas fa-chevron-right"></i></a>
+        </div>
+        <div class="product-grid" id="wishlist-grid"></div>
+      </div>
+
+      <!-- RECOMMENDED -->
+      <div style="max-width:1200px;margin:0 auto 60px;padding:0 16px;" class="anim-scroll">
+        <div class="sec-hdr">
+          <h2 class="section-title"><i class="fas fa-star" style="margin-right:8px;color:var(--star);"></i> Recommended
+            for You</h2>
+        </div>
+        <div class="product-grid" id="recommended-grid"></div>
+      </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-top"><a href="#">Back to top</a></div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Get to Know Us</h4><a href="#">About ShopZone</a><a href="#">Careers</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect with Us</h4><a href="#">Facebook</a><a href="#">Twitter</a><a href="#">Instagram</a>
+      </div>
+      <div class="footer-col">
+        <h4>Make Money with Us</h4><a href="#">Sell on ShopZone</a><a href="#">Advertise</a>
+      </div>
+      <div class="footer-col">
+        <h4>Let Us Help You</h4><a href="#">Your Account</a><a href="#">Returns</a><a href="#">Help</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><span class="footer-logo">Shop<span>Zone</span></span>
+      <div class="footer-bottom-links"><a href="#">Conditions of Use</a><a href="#">Privacy Notice</a></div>
+    </div>
+    <div class="footer-copy">&copy; 2026 ShopZone.in. Demo clone.</div>
+  </footer>
+  <button class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+  <script src="index.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Wishlist section on cart page
+      const wg = document.getElementById('wishlist-grid');
+      if (wg) {
+        const wishItems = wishlist.getItems();
+        wg.innerHTML = wishItems.length ? wishItems.map((p, i) => renderCard(p, i)).join('') : '<p style="grid-column:1;text-align:center;padding:40px 20px;color:var(--text-mid);grid-column:1;grid-row:2;align-self:center;"><i class="far fa-heart" style="font-size:40px;color:var(--border);margin-bottom:12px;display:block"></i><h3 style="font-size:18px;color:var(--text-dark);margin-bottom:4px;">Your wishlist is empty</h3><p style="font-size:13px;">Tap the heart icon on products to save here</p></p>';
+      }
+
+      // Recommended on cart page
+      const rg = document.getElementById('recommended-grid');
+      if (rg) {
+        const cartIds = cart.getItems().map(i => i.id);
+        const avail = PRODUCTS.filter(p => !cartIds.includes(p.id));
+        rg.innerHTML = avail.sort(() => 0.5 - Math.random()).slice(0, 6).map((p, i) => renderCard(p, i)).join('');
+      }
+    });
+  </script>
+</body>
+
+</html>
